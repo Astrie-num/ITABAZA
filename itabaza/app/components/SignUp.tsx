@@ -8,10 +8,8 @@ import {Image} from 'react-native';
 
 function SignUp() {
 
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [formData, setFormData] = useState({
+      fullName:'',
       email: '',
       password: '',
   });
@@ -21,7 +19,7 @@ function SignUp() {
   const handleSubmit = async () => {
 
   }
-  function handleChange(field, value) {
+  function handleChange(field: 'email' | 'password' | 'fullName', value:string) {
       setFormData((prevData) => ({
           ...prevData,
           [field]: value,
@@ -33,7 +31,7 @@ function SignUp() {
 
           <View style={styles.container}>
             <TouchableOpacity onPress={() => {router.push('/components/SignIn')}} style={styles.back} >
-            <FontAwesome name='arrow-left' size={30} />
+            <FontAwesome name='chevron-left' color ='#002D62' size={25} />
             </TouchableOpacity>
           </View>
           <View style={styles.form}>
@@ -64,9 +62,9 @@ function SignUp() {
 
 
           </View>
-          <View style={styles.loginBtn}>
-              <TouchableOpacity style={styles.loginCont} >
-                  <Text style={styles.login}>SIGN UP</Text>
+          <View style={styles.signUpBtn}>
+              <TouchableOpacity onPress={() => {router.push('/components/verification')}} style={styles.signUpCont} >
+                  <Text style={styles.signUp}>SIGN UP</Text>
 
               </TouchableOpacity>
               <FontAwesome name='arrow-right' size={15} style={styles.arrow} />
@@ -75,7 +73,7 @@ function SignUp() {
               <Text>OR</Text>
               <View style={styles.google}>
                   <Image source={require('@/assets/images/google.png')} />
-                  <Text style={styles.googlelogin}>Continue with Google</Text>
+                  <Text style={styles.googleSignUp}>Continue with Google</Text>
               </View>
           </View>
           <TouchableOpacity onPress={()=>{router.push('/components/SignIn')}} style={{marginBottom:15, marginLeft:50}}>
@@ -90,15 +88,16 @@ function SignUp() {
     container: {
         flex: 1,
         // alignItems: 'center',
-        paddingHorizontal: 10,
-        width:'99%',
+        paddingHorizontal: 5,
+        width:'100%',
+        // marginTop:0,
        
     },
 
     back:{
-      marginTop:40,
+      marginTop:70,
       fontWeight:'light',
-      // marginRight:50,
+      // marginLeft:0,
     },
     form: {
         width: '100%',
@@ -123,7 +122,6 @@ function SignUp() {
         marginHorizontal: 10,
         height: 22,
         width: 22,
-        color:'#807A7A',
     },
     eyeIcon2:{
         marginLeft:100,
@@ -167,7 +165,7 @@ function SignUp() {
         shadowOpacity: 0.2,
         shadowRadius: 2,
     },
-    loginBtn: {
+    signUpBtn: {
         backgroundColor: '#002d62',
         width: 271,
         height: 58,
@@ -188,13 +186,13 @@ function SignUp() {
         borderRadius: 20,
         
     },
-    login: {
+    signUp: {
         color: "#fff",
         fontSize: 18,
         marginLeft:95,
         
     },
-    loginCont: {
+    signUpCont: {
         textAlign: 'center',
         width: '80%',
         height: '100%',
@@ -220,7 +218,7 @@ function SignUp() {
         paddingTop:15,
         borderRadius:15
     },
-    googlelogin:{
+    googleSignUp:{
         marginLeft:10,
         fontSize:16,
         color:'#120D26',

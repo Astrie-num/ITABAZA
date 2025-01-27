@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
-const CodeInput = () => {
+interface CodeInputProps {
+    currentPosition: number;
+}
+
+const CodeInput: React.FC<CodeInputProps> = ({ currentPosition }) => {
   const [code, setCode] = useState(['4', '4', '-', '-']);
 
-  const handleChange = (text, index) => {
+  const handleChange = (text: string, index: number) => {
     const newCode = [...code];
     newCode[index] = text;
     setCode(newCode);
@@ -19,9 +23,12 @@ const CodeInput = () => {
           onChangeText={(text) => handleChange(text, index)}
           maxLength={1}
           keyboardType="numeric"
-          style={[styles.input, index === 2 && styles.thirdBox, index === 2 && 3 && styles.inputs]}
-          
-
+          style={[
+            styles.input, 
+            index === 2 && styles.thirdBox, 
+            index === 3 &&  styles.inputs,
+            // index === currentPosition && styles.activeInput, // Optional: if you want to highlight the current position
+          ]}
         />
       ))}
     </View>
@@ -34,6 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: 300,
   },
+
   input: {
     height: 50,
     width: 50,
@@ -42,16 +50,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     marginHorizontal: 5,
-    borderColor:'#E4DFDF',
+    borderColor: '#E4DFDF',
   },
 
-  thirdBox:{
-    borderColor:'#002D62',
-    color:'#E4DFD',
+  thirdBox: {
+    borderColor: '#002D62',
+    color: '#E4DFD',
   },
-
-  inputs:{
-    color:'#E4DFDF',
+  inputs: {
+    color: '#E4DFDF',
   },
 });
 

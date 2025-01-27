@@ -14,18 +14,18 @@ function Page3() {
       </Text>
       <Text style={styles.description}>Itabaza simplifies post-death formalities, from registration to certificates.</Text>
       <View style={styles.dots}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           
           onPress={() => {
             router.push('/components/SignUp');
           }}
         >
           <Text style={styles.btnText}>Skip</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <DotNavigation currentPosition={1}/>
 
-        <TouchableOpacity  onPress={() => { router.push('/components/Page3') }}>
+        <TouchableOpacity  onPress={() => { router.push('/components/SignUp') }}>
           <Text style={styles.btnTextW}>Next</Text>
 
         </TouchableOpacity>

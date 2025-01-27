@@ -7,8 +7,6 @@ import { useRouter } from 'expo-router';
 
 function SignIn() {
     const [rememberMe, setRememberMe] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -18,7 +16,7 @@ function SignIn() {
     const handleSubmit = async () => {
 
     }
-    function handleChange(field, value) {
+    function handleChange(field : 'email'| 'password', value:string) {
         setFormData((prevData) => ({
             ...prevData,
             [field]: value,
@@ -52,7 +50,7 @@ function SignIn() {
                 <View style={styles.labelContainer}>
                     <Text style={styles.label}>Remember me</Text>
                 </View>
-                <TouchableOpacity  style={styles.labelContainer}>
+                <TouchableOpacity onPress={() => {router.push('/components/Forgot')}} style={styles.labelContainer}>
                     <Text style={styles.label}>Forgot Password?</Text>
                 </TouchableOpacity>
                 </View>
@@ -79,11 +77,11 @@ function SignIn() {
 
             </View>
             <View style={styles.loginBtn}>
-                <TouchableOpacity onPress={handleSubmit} style={styles.loginCont} >
+                <TouchableOpacity onPress={() => (router.push('/components/eventPlan'))} style={styles.loginCont} >
                     <Text style={styles.login}>LOGIN</Text>
 
                 </TouchableOpacity>
-                <FontAwesome name='arrow-right' size={15} style={styles.arrow} />
+                <FontAwesome name='chevron-right' color ='#002D62' size={15} style={styles.arrow} />
             </View>
             <View style={styles.other}>
                 <Text>OR</Text>
