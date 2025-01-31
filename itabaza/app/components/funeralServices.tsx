@@ -20,10 +20,10 @@ function FuneralServices() {
                 <ScrollView style = {styles.container}>
                     <View style = {styles.images}>
                         <View style= {styles.serviceContainer}>
-                            <TouchableOpacity style={styles.service}>
-                                <Image source={require('@/assets/images/cemetriesMap')} style={styles.serviceImage}/>
+                            <TouchableOpacity onPress={() => (router.push('/components/cemetriesMap'))} style={styles.service}>
+                                <Image source={require('@/assets/images/brown-cross.jpeg')} style={styles.serviceImage}/>
                                 <View>
-                                    <Text style={styles.serviceHeading}>Cemetries</Text>
+                                    <Text style={styles.serviceHeading}>Cemeteries</Text>
                                     <Text style = {styles.bookService}> Arrange for a cemetery and {'\n'} make everything easier for you</Text>
                                 </View>
                             </TouchableOpacity>
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20, 
         width: '100%', 
+        backgroundColor: 'white',
     },
 
     back:{
