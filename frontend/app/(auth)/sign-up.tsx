@@ -1,12 +1,14 @@
 import { FontAwesome } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
 import { View, Text, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { GestureHandlerRootView, TextInput } from 'react-native-gesture-handler';
 import { Image } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StackActions } from "@react-navigation/native";
+import useAuth from '@/hooks/useAuth';
 
 function SignUp() {
+  const { register, user} = useAuth()
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -22,27 +24,7 @@ function SignUp() {
     }
 
     try {
-      const response = await fetch("http://10.12.74.135:5000/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
-          email: formData.email,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // Store the email in AsyncStorage
-        await AsyncStorage.setItem('userEmail', formData.email);
-        router.push("/components/verification");
-      } else {
-        alert(`Error: ${data.message}`);
-      }
+      await register(formData);
     } catch (error) {
       console.error("Signup failed:", error);
     }
@@ -55,11 +37,17 @@ function SignUp() {
     }));
   };
 
+  useEffect(() => {
+    if (user) {
+      router.replace("/(root)/(tabs)/eventPlan"); 
+    }
+  }, [user]);
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.container}>
-          <TouchableOpacity onPress={() => { router.push('/components/SignIn'); }} style={styles.back}>
+          <TouchableOpacity onPress={() => { router.push('/(auth)/sign-in'); }} style={styles.back}>
             <FontAwesome name='chevron-left' color='#002D62' size={25} />
           </TouchableOpacity>
         </View>
@@ -105,7 +93,7 @@ function SignUp() {
             <Text style={styles.googleSignUp}>Continue with Google</Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => { router.push('/components/SignIn'); }} style={{ marginBottom: 15, marginLeft: 50 }}>
+        <TouchableOpacity onPress={() => { router.push('/(auth)/sign-in'); }} style={{ marginBottom: 15, marginLeft: 50 }}>
           <Text style={{ color: '#120D26' }}>Already have an account? <Text style={{ color: '#002D62' }}>Login</Text></Text>
         </TouchableOpacity>
       </View>

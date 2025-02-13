@@ -17,7 +17,7 @@ function Page3() {
         <TouchableOpacity
           
           onPress={() => {
-            router.push('/components/SignUp');
+            router.push('/(auth)/sign-up');
           }}
         >
           <Text style={styles.btnText}>Skip</Text>
@@ -25,7 +25,7 @@ function Page3() {
 
         <DotNavigation currentPosition={2}/>
 
-        <TouchableOpacity  onPress={() => { router.push('/components/SignUp') }}>
+        <TouchableOpacity  onPress={() => { router.push('/(auth)/sign-up') }}>
           <Text style={styles.btnTextW}>Next</Text>
 
         </TouchableOpacity>

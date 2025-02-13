@@ -18,7 +18,7 @@ function HomeScreen() {
           <TouchableOpacity
             
             onPress={() => {
-              router.push('/components/SignUp');
+              router.push('/(auth)/sign-up');
             }}
           >
             <Text style={styles.btnText}>Skip</Text>

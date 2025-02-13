@@ -1,15 +1,34 @@
 
-import { Text, View, StyleSheet, TouchableOpacity,TextInput, Image } from 'react-native';
-// import { FontAwesome } from '@expo/vector-icons';
+import { Text, View, StyleSheet, TouchableOpacity,TextInput, Image, BackHandler, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { GestureHandlerRootView, NativeViewGestureHandler, ScrollView } from 'react-native-gesture-handler';
-// import React, { useState } from 'react';
+import useAuth from '@/hooks/useAuth';
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback, useEffect } from 'react';
 
 
 
 function PlanEvent() {
 
     const router = useRouter();
+    const { user } = useAuth();
+
+    useEffect(() => {
+        const backAction = () => {
+            if (user) {
+                Alert.alert("Exit App", "Do you want to exit the app?", [
+                    { text: "Cancel", style: "cancel" },
+                    { text: "Exit", onPress: () => BackHandler.exitApp() }
+                ]);
+                return true; 
+            }
+            return false; 
+        };
+
+        const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
+
+        return () => backHandler.remove();
+    }, [user]);
     return (
             <GestureHandlerRootView>
                 <View style={styles.titleContainer}>
