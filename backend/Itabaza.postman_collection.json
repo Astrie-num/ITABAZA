@@ -1,0 +1,781 @@
+{
+	"info": {
+		"_postman_id": "75d61f99-e4c9-4ee9-ae0e-f9d1548f64b4",
+		"name": "Itabaza",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26199339"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "registering",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"kai\",\n    \"email\":\"mbabazilouangeliza@gmail.com\",\n    \"password\":\"inezanice123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mbabazilouangeliza@gmail.com\",\n    \"otp\":\"3963\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/verify-otp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"verify-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mbabazilouangeliza@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\":\"802f645211020fcddf31c37a5579d3a9902485d0134e9a61be8b60489a25746f\",\n    \"newPassword\":\"inezanice123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mbabazilouangeliza@gmail.com\",\n    \"password\":\"inezanice123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "coffin",
+			"item": [
+				{
+					"name": "coffin create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "serviceId",
+									"value": "67989e8668e207dd96b7bd4c",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "postman-cloud:///1efe2100-4ed4-4f30-993d-0ff2c836b239"
+								},
+								{
+									"key": "name",
+									"value": "luxury coffin",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "500",
+									"type": "text"
+								},
+								{
+									"key": "material",
+									"value": "mahogany",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/coffins/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"coffins",
+								""
+							],
+							"query": [
+								{
+									"key": "serviceId",
+									"value": "67989e8668e207dd96b7bd4c",
+									"disabled": true
+								},
+								{
+									"key": "picture",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "material",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "allcoffins",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "onecoffin",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "event",
+			"item": [
+				{
+					"name": "addEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Concert",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Let us handle your concert without you stressing out ",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/lisa/Downloads/birthday.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/events/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "allevents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/events/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oneEvent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/events/67a0943f8bc2bedae0337574",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"events",
+								"67a0943f8bc2bedae0337574"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "addService",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "eventId",
+									"value": "67a0943f8bc2bedae0337574",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "cake delivery services",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "let as bring services where you are without having to move ",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/lisa/Downloads/cake.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/services/service",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"services",
+								"service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getallin1event",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/services/67a0c9c7784054b7960ec670",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"services",
+								"67a0c9c7784054b7960ec670"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "flower",
+			"item": [
+				{
+					"name": "addFlower",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "serviceId",
+									"value": "67989f1e68e207dd96b7bd50",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "red roses",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "vendor",
+									"value": "Flowery shop",
+									"type": "text"
+								},
+								{
+									"key": "kind",
+									"value": "roses",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/lisa/Downloads/flowers.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/flowers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flowers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/flowers/67989f1e68e207dd96b7bd50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flowers",
+								"67989f1e68e207dd96b7bd50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/flowers/flower/67989fe668e207dd96b7bd54",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flowers",
+								"flower",
+								"67989fe668e207dd96b7bd54"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cemetery",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "serviceId",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "vendor",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "availableSlots",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "priceVIP",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "priceRegulra",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/cemeteries/?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cemeteries",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/cemeteries/6798a3a67b505d381c89b7fa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cemeteries",
+								"6798a3a67b505d381c89b7fa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSingle",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vendor",
+			"item": [
+				{
+					"name": "addVendor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "serviceId",
+									"value": "67989f1e68e207dd96b7bd50",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "we sell flowers",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "down town",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "02314839",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "flowersshop@gmail.co",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Flower shop",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/lisa/Downloads/shop.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/vendors/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"vendors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/vendors/vendors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"vendors",
+								"vendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllbyserviceId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/vendors/vendors/67989f1e68e207dd96b7bd50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"vendors",
+								"vendors",
+								"67989f1e68e207dd96b7bd50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get1ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/vendors/vendor/67a0dee64317ab33c66c2ea8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"vendors",
+								"vendor",
+								"67a0dee64317ab33c66c2ea8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

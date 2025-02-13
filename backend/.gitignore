@@ -1,0 +1,20 @@
+# Node.js modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Docker-related files
+docker-compose.override.yml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
