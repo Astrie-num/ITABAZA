@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, BackHandler, } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import axios from 'axios';
+import useAuth from '@/hooks/useAuth';
+import { StackActions, useFocusEffect } from '@react-navigation/native';
 
 
 function SignIn() {
+    const { login, user } = useAuth()
     const [rememberMe, setRememberMe] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
@@ -23,19 +26,7 @@ function SignIn() {
             return;
         }
         try {
-            const apiUrl = "http://10.12.74.135:5000/api/auth/login"
-            const response = await axios.post(apiUrl, {
-                email: formData.email,
-                password: formData.password,
-            });
-
-            const data = response.data as SignInResponse;
-            if (data.success) {
-                console.log("Login successful", response.data);
-                router.push('/components/tabed/(tabs)/eventPlan'); // Redirect to event plan after successful sign-up
-            } else {
-                alert("Login failed. Please try again.");
-            }
+            await login(formData.email, formData.password)
         } catch (error) {
             console.error("Sign-up error:", error);
             alert("Sign-up failed. Please try again.");
@@ -51,6 +42,14 @@ function SignIn() {
     const toggleSwitch = () => {
         setRememberMe((previousState) => !previousState);
     };
+
+     useEffect(() => {
+        if (user) {
+            console.log("Here is the user: ", user)
+            router.replace("/(root)/(tabs)/eventPlan");
+        }
+      }, [user]);
+
     return (
         <View style={styles.container}>
             {/* Logo and App Name */}
@@ -76,7 +75,7 @@ function SignIn() {
                 <View style={styles.labelContainer}>
                     <Text style={styles.label}>Remember me</Text>
                 </View>
-                <TouchableOpacity onPress={() => (router.push('/components/Forgot'))} style={styles.labelContainer}>
+                <TouchableOpacity onPress={() => (router.push('/(auth)/forgot-password'))} style={styles.labelContainer}>
                     <Text style={styles.label}>Forgot Password?</Text>
                 </TouchableOpacity>
                 </View>
@@ -115,7 +114,7 @@ function SignIn() {
                     <Text style={styles.googlelogin}>Login with Google</Text>
                 </View>
             </View>
-            <TouchableOpacity onPress={()=>{router.push('/components/SignUp')}} style={{marginBottom:15}}>
+            <TouchableOpacity onPress={()=>{router.push('/(auth)/sign-up')}} style={{marginBottom:15}}>
                 <Text style={{color:'#120D26'}}>Don't have an account? <Text style={{color:'#002D62'}}>Sign Up</Text></Text>
             </TouchableOpacity>
         </View>

@@ -27,7 +27,7 @@ function Reset () {
 
         try{
 
-            const apiUrl = "http://10.12.74.135:5000/api/auth/forgot-password";
+            const apiUrl = "http://10.12.74.91:5000/api/auth/forgot-password";
             const response = await axios.post(apiUrl, {
                 email:formData.email,
             })
@@ -37,7 +37,7 @@ function Reset () {
             const data = response.data as ForgotResponse;
             if (data.success) {
                 // Redirect to the 'newPassword' page
-                router.push('/components/newPassword');
+                router.push('/(auth)/new-password');
             } else {
                 alert("Failed to send password reset email. Please try again.");
             }
@@ -59,7 +59,7 @@ function Reset () {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
             <View style={styles.container}>
-                <TouchableOpacity onPress={() => (router.push('/components/SignIn'))} style={styles.back} >
+                <TouchableOpacity onPress={() => (router.push('/(auth)/sign-up'))} style={styles.back} >
                 <FontAwesome name='chevron-left' color ='#002D62' size={25} />
                 </TouchableOpacity>
             </View>
