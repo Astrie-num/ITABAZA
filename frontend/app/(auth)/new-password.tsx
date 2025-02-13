@@ -39,7 +39,7 @@ function NewPassword () {
         }
       
         try {
-          const response = await fetch('http://10.12.74.135:5000/api/auth/reset-password', {
+          const response = await fetch('http://10.12.74.91:5000/api/auth/reset-password', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ function NewPassword () {
           }
 
           Alert.alert('Success', 'Password reset successfully');
-          router.push('/components/SignIn');
+          router.push('/(auth)/sign-in');
 
       } catch (error) {
           console.error('Password reset failed:', error);
@@ -71,7 +71,7 @@ function NewPassword () {
     return (
         <View style={styles.container}>
             <View style={styles.container}>
-                <TouchableOpacity onPress={() => (router.push('/components/Forgot'))} style={styles.back} >
+                <TouchableOpacity onPress={() => (router.push('/(auth)/forgot-password'))} style={styles.back} >
                 <FontAwesome name='chevron-left' color ='#002D62' size={25} />
                 </TouchableOpacity>
             </View>

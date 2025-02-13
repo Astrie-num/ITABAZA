@@ -4,11 +4,13 @@ import { useRouter } from 'expo-router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import useAuth from '@/hooks/useAuth';
 
 function Verification() {
     const router = useRouter();
-    const [email, setEmail] = useState<string | null>(null); // state to store email
-    const [otp, setOtp] = useState<string>('');
+    const { user , verifyOtp } = useAuth();
+    const [email, setEmail] = useState(''); // state to store email
+    const [otp, setOtp] = useState('');
 
     useEffect(() => {
         const getEmailFromStorage = async () => {
@@ -46,16 +48,12 @@ function Verification() {
       
     const handleVerifyOtp = async () => {
         try {
-            const response = await axios.post('http://10.12.74.135:5000/api/auth/verify-otp', {
-                email: email,
-                otp: otp,
-            });
-            const data = response.data as ResponseData;
-            console.log(data);
-            if (data.success) {
-                router.push('/components/SignIn');
+            console.log("email: ",user?.email)
+            if (user?.email) {
+                verifyOtp(user.email, otp);
             } else {
-                alert('Invalid OTP. Please try again.');
+                console.error('User email is undefined');
+                alert('User email is undefined. Please try again.');
             }
         } catch (error:unknown) {
             if (isAxiosError(error)) {
@@ -82,7 +80,7 @@ function Verification() {
     return (
         <View style={styles.container}>
             <View style={styles.container}>
-                <TouchableOpacity onPress={() => {router.push('/components/SignUp')}} style={styles.back}>
+                <TouchableOpacity onPress={() => {router.push('/(auth)/sign-up')}} style={styles.back}>
                     <FontAwesome name='chevron-left' color='#002D62' size={25} />
                 </TouchableOpacity>
             </View>
