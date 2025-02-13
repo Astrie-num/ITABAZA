@@ -41,6 +41,7 @@ const registerUser = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "User registered successfully. Please check your email for OTP.",
+      user: newUser
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -67,6 +68,8 @@ const verifyOTP = async (req, res) => {
     if (new Date() > user.otpExpiration) {
       return res.status(400).json({ success: false, message: "OTP has expired!" });
     }
+
+    console.log("Otp verified successfully")
 
     // OTP is valid, login the user (in real-world scenario, issue a JWT here)
     res.status(200).json({ success: true, message: "OTP verified successfully. User logged in!" });
@@ -183,6 +186,7 @@ const loginUser = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Login successful!",
+      user,
       token,
     });
   } catch (error) {
